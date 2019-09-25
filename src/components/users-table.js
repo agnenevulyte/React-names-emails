@@ -12,14 +12,15 @@ export default class UsersTable extends Component {
     };
   }
 
-  filterNames = arr => {
-    let filteredDownToNames = arr.map(each => each.name);
-    this.setState({ names: filteredDownToNames });
-  };
-
-  fileterEmails = arr => {
-    let filteredDownToEmails = arr.map(each => each.email);
-    this.setState({ emails: filteredDownToEmails });
+  filterData = (arr, type) => {
+    if (type === "name") {
+      let filteredDownToNames = arr.map(each => each.name);
+      this.setState({ names: filteredDownToNames });
+    }
+    if (type === "email") {
+      let filteredDownToEmails = arr.map(each => each.email);
+      this.setState({ emails: filteredDownToEmails });
+    }
   };
 
   componentDidMount = () => {
@@ -30,13 +31,13 @@ export default class UsersTable extends Component {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then(res => res.json())
       .then(json => {
-        console.log("api has returned: ", json.length);
+        // console.log("api has returned: ", json.length);
         this.setState({ users: json });
       })
       .then(() => {
-        this.filterNames(this.state.users);
-        this.fileterEmails(this.state.users);
-        console.log("this state is now ", this.state.users); // <-- this is going to be where we call a filtering function to wittle `users` down to 2 new arrays. One of emails, one of names.
+        this.filterData(this.state.users, "email");
+        this.filterData(this.state.users, "name");
+        // console.log("this state is now ", this.state.users); // <-- this is going to be where we call a filtering function to wittle `users` down to 2 new arrays. One of emails, one of names.
       })
       .catch(err => alert(err));
   };
