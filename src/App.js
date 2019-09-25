@@ -1,13 +1,10 @@
 import React from "react";
-// import './App.css';
-import Names from "./components/Names";
-import Emails from "./components/Emails";
+import UsersTable from "./components/users-table";
 
 function App() {
   return (
     <div className="App">
-      <Names />
-      <Emails />
+      <UsersTable />
     </div>
   );
 }
