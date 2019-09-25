@@ -7,21 +7,29 @@ export default class Names extends Component {
       names: []
     };
   }
+
+  componentDidMount = () => {
+    this.fetchNames();
+  };
+
+  fetchNames = () => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res => res.json())
+      .then(json => {
+        console.log("json", json);
+        this.setState({ names: json });
+      })
+      .catch(err => alert(err));
+  };
   render() {
+    console.log(this.state.names);
     return (
       <div>
         <h1>Names:</h1>
         <ul>
-          <li>Names 1</li>
-          <li>Names 2</li>
-          <li>Names 3</li>
-          <li>Names 4</li>
-          <li>Names 5</li>
-          <li>Names 6</li>
-          <li>Names 7</li>
-          <li>Names 8</li>
-          <li>Names 9</li>
-          <li>Names 10</li>
+          {this.state.names.map((each, i) => {
+            return <li key={i}>{each.name}</li>;
+          })}
         </ul>
       </div>
     );
