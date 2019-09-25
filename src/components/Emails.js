@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { componentDidMount } from "./Names";
 
 export default class Emails extends Component {
   constructor() {
@@ -7,21 +8,29 @@ export default class Emails extends Component {
       emails: []
     };
   }
+
+  componentDidMount = () => {
+    this.fetchEmails();
+  };
+
+  fetchEmails = () => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res => res.json())
+      .then(json => {
+        console.log("json", json);
+        this.setState({ emails: json });
+      })
+      .catch(err => alert(err));
+  };
+
   render() {
     return (
       <div>
         <h1>Emails:</h1>
         <ul>
-          <li>Emails 1</li>
-          <li>Emails 2</li>
-          <li>Emails 3</li>
-          <li>Emails 4</li>
-          <li>Emails 5</li>
-          <li>Emails 6</li>
-          <li>Emails 7</li>
-          <li>Emails 8</li>
-          <li>Emails 9</li>
-          <li>Emails 10</li>
+          {this.state.emails.map((each, i) => {
+            return <li key={i}>{each.email}</li>;
+          })}
         </ul>
       </div>
     );
