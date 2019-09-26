@@ -32,15 +32,19 @@ export default function UsersList({}) {
     getUsers();
   }, []);
 
+  const selectUser = e => {
+    console.log(e.target.value);
+  };
+
   return (
     <div className="container">
       <h1 className="text-center">My HOOK</h1>
       <div className="row">
         <div className="col-md-6">
-          <Names names={names} />
+          <Names names={names} selectUser={selectUser} />
         </div>
         <div className="col-md-6">
-          <Emails emails={emails} />
+          <Emails emails={emails} selectUser={selectUser} />
         </div>
       </div>
     </div>
