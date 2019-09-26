@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 
 export default class Emails extends Component {
+  constructor(props) {
+    super();
+  }
+
   render() {
     // console.log(this.props.emails);
     return (
@@ -9,7 +13,11 @@ export default class Emails extends Component {
         <ul style={{ display: "flex", flexDirection: "column" }}>
           {this.props.emails.map((each, i) => {
             return (
-              <button key={i} style={{ marginBottom: "10px" }}>
+              <button
+                key={i}
+                style={{ marginBottom: "10px" }}
+                onClick={() => this.props.selectUser(each)}
+              >
                 {each}
               </button>
             );
