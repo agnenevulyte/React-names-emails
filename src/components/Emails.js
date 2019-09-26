@@ -5,10 +5,14 @@ export default class Emails extends Component {
     // console.log(this.props.emails);
     return (
       <div>
-        <h1>Emails:</h1>
-        <ul>
+        <h1 className="text-center">Emails:</h1>
+        <ul style={{ display: "flex", flexDirection: "column" }}>
           {this.props.emails.map((each, i) => {
-            return <li key={i}>{each}</li>;
+            return (
+              <button key={i} style={{ marginBottom: "10px" }}>
+                {each}
+              </button>
+            );
           })}
         </ul>
       </div>
