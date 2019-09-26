@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Names from "./Names";
 import Emails from "./Emails";
+import MyHook from "./MyHook";
 
 export default class UsersTable extends Component {
   constructor() {
@@ -44,9 +45,18 @@ export default class UsersTable extends Component {
 
   render() {
     return (
-      <div>
-        <Names names={this.state.names} />
-        <Emails emails={this.state.emails} />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4">
+            <Names names={this.state.names} />
+          </div>
+          <div className="col-md-4">
+            <Emails emails={this.state.emails} />
+          </div>
+          <div className="col-md-4">
+            <MyHook />
+          </div>
+        </div>
       </div>
     );
   }
